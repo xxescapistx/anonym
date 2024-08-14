@@ -1,5 +1,5 @@
 "use client";
-import { Badge, Box, Card, CardSection, Divider, Flex, Text } from "@mantine/core";
+import { Badge, Box, Button, Card, CardSection, Divider, Flex, Text } from "@mantine/core";
 import { type posts } from "@prisma/client";
 import React, { useEffect, useState } from "react";
 
@@ -12,12 +12,13 @@ const Main = () => {
     setPosts(posts);
   };
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, []);
 
   return (
     <Flex direction="column" h="100vh" w="100vw" align="center">
+      <Button onClick={() => fetchPosts()}>Fetch Posts</Button>
       <Flex direction='column' p="lg" h="100vh" w="80vw" bg="gray" align='stretch' gap={10}>
         {posts?.map((post) => {
           return (
