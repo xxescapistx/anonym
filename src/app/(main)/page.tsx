@@ -12,22 +12,20 @@ const Main = () => {
     setPosts(posts);
   };
 
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, []);
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
-    <Flex direction="column" h="100vh" w="100vw" align="center">
-      <Button onClick={() => fetchPosts()}>Fetch Posts</Button>
-      <Flex direction='column' p="lg" h="100vh" w="80vw" bg="gray" align='stretch' gap={10}>
+      <Flex direction='column' p="lg" miw="80vw"align='stretch' gap={10}>
         {posts?.map((post) => {
           return (
             <Card shadow="sm" padding="md" w="auto" h='fit-content' key={post.id}>
               <Flex direction="row" gap={10}>
-                <Badge bg="red">{post.id}</Badge>
+                {/* <Badge bg="red">{post.id}</Badge> */}
                 <Badge bg="green">{post.user}</Badge>
                 <Box flex={1}/>
-                <Badge bg="red" style={{userSelect: 'none'}} onClick={() => console.log("delete:",post.id)}>delete</Badge>
+                {/* <Badge bg="red" style={{userSelect: 'none'}} onClick={() => console.log("delete:",post.id)}>delete</Badge> */}
               </Flex>
 
               <Divider my="md"/>
@@ -37,8 +35,6 @@ const Main = () => {
           );
         })}
       </Flex>
-      Test
-    </Flex>
   );
 };
 
