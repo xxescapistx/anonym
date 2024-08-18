@@ -11,4 +11,5 @@ model posts {
   id Int @unique @id @default(autoincrement())
   user String @db.VarChar(40)
   message String @db.VarChar()
+  datetime DateTime @default(now())
 }
