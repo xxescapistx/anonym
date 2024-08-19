@@ -3,6 +3,7 @@ import { type posts } from "@prisma/client";
 export type Post = {
     u: string
     m: string
+    t: string
 }
 
 export class API {
@@ -28,7 +29,8 @@ export class API {
     }
 
     async createPost(post: Post){
-        await fetch('/api/posts/create', {method: 'POST', body: JSON.stringify(post)})
+        const response = await fetch('/api/posts/create', {method: 'POST', body: JSON.stringify(post)})
+        return response
     }
   
 

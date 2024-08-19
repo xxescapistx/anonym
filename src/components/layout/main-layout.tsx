@@ -14,20 +14,10 @@ import { useDisclosure } from "@mantine/hooks";
 import React, { ReactNode, useState } from "react";
 import Header from "../header/header";
 import NavBar from "../nav/navbar";
-import MessageForm from "../message/form";
-import { TbSend } from "react-icons/tb";
-import { usePathname } from 'next/navigation'
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   const [opened, { toggle }] = useDisclosure();
-  const [showModel, setShowModel] = useState<boolean>(false)
-
-  const pathname = usePathname()
-
-  const hideModel = () => {
-    setShowModel(!showModel)
-  }
-
+  
   return (
     <MantineProvider>
       <AppShell
@@ -49,30 +39,9 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
           <NavBar />
         </AppShell.Navbar>
         <AppShell.Main bg='#f4f4f4'>
-          <Modal title='Write your message' centered opened={showModel} onClose={() => setShowModel(!showModel)}>
-            <MessageForm hideModel={hideModel}/>
-          </Modal>
           <Flex direction="column" align="center">
           {children}
           </Flex>
-
-          {
-            pathname==='/' ?
-            <>
-            <ActionIcon onClick={() => setShowModel(!showModel)} style={{zIndex: 1}} variant="light" color="gray" radius='8vh' size={'8vh'} pos='absolute' bottom={'15vh'} right='6vw' hiddenFrom="sm">
-            <TbSend size={'5vh'} />
-          </ActionIcon>
-          <ActionIcon onClick={() => setShowModel(!showModel)} style={{zIndex: 1}} variant="light" color="gray" radius='8vh' size={'8vh'} pos='absolute' top={'15vh'} right='6vw' visibleFrom="sm">
-            <TbSend size={'5vh'} />
-          </ActionIcon>
-            </>
-            :
-            <></>
-          }
-
-          
-
-
           </AppShell.Main>
       </AppShell>
     </MantineProvider>

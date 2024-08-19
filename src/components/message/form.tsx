@@ -2,15 +2,25 @@ import { API, Post } from "@/lib/Api/api-bff";
 import { Button, Center, Flex, Textarea } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 
-function findUser(paragraph: string): Post {
+function createPost(paragraph: string): Post {
     const match = paragraph.match(/@(\w+)/);
-    const m = paragraph.replace(/@\w+/, '')
+    const tMatch = paragraph.match(/(?<=#)\w+/g) ?? []
+    const m = paragraph.replace(/@\w+/, '').replace(/@/g,'').replace(/#\w+/g,'')
+
+    console.log()
+
     let u = 'anonym'
+    let t = ''
+
     if (match) {
         u = match[1];
     }
+
+    if (tMatch) {
+      t = tMatch.slice(0,2 ).join(',');
+  }
     
-    return { u: u, m: m }
+    return { u: u, m: m, t: t }
 }
 
 const MessageForm = ({ hideModel }: { hideModel: () => void }) => {
@@ -32,8 +42,10 @@ const MessageForm = ({ hideModel }: { hideModel: () => void }) => {
           const newMessage = message.length > 5 ? message : null;
 
           if (newMessage) {
-            const post = findUser(newMessage);
-            await API.getInstance().createPost(post);
+            const post = createPost(newMessage);
+            const res = await API.getInstance().createPost(post);
+            // add user feedback
+            console.log(res)
           }
           setMessage("");
           hideModel();
