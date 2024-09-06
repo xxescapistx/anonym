@@ -62,7 +62,7 @@ const Main = () => {
   }, []);
 
   return (
-    <Flex className="w-full h-[85vh]" direction="column" p="lg" align="stretch" gap={10}>
+    <Flex className="w-full h-[80vh]" direction="column" p="lg" align="stretch" gap={10}>
       <Group align="center" justify="center">
         <TextInput
           autoFocus
