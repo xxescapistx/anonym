@@ -62,7 +62,7 @@ const Main = () => {
   }, []);
 
   return (
-    <Flex direction="column" p="lg" miw="80vw" align="stretch" gap={10}>
+    <Flex className="w-full h-[85vh]" direction="column" p="lg" align="stretch" gap={10}>
       <Group align="center" justify="center">
         <TextInput
           autoFocus
@@ -92,7 +92,7 @@ const Main = () => {
 
       </Group>
 
-      <ScrollArea h="73vh">
+      <ScrollArea className="h-[70vh]">
         <Flex direction="column-reverse" p="lg" miw="80vw" align="stretch" gap={10}>
           {posts?.length! > 0 ? (
             posts

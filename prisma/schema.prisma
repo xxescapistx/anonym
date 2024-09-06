@@ -4,13 +4,13 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL") 
+  url      = env("DATABASE_URL")
 }
 
 model posts {
-  id Int @unique @id @default(autoincrement())
-  user String @db.VarChar(40)
-  message String @db.VarChar()
-  tags String @db.VarChar()
+  id       Int      @id @unique @default(autoincrement())
+  user     String   @db.VarChar(40)
+  message  String   @db.VarChar
   datetime DateTime @default(now())
+  tags     String   @db.VarChar
 }
